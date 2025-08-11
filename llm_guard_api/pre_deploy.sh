@@ -2,36 +2,78 @@
 # Pre-deploy script for Render
 # Downloads models to persistent disk before starting the server
 
-set -e  # Exit on error
+# Don't exit on error immediately - we want to see what fails
+set +e
 
-echo "🚀 Running pre-deploy tasks for LLM Guard API..."
+echo "==================================================="
+echo "🚀 STARTING PRE-DEPLOY SCRIPT FOR LLM GUARD"
+echo "==================================================="
+echo "Current directory: $(pwd)"
+echo "Directory contents:"
+ls -la
 
 # Set models directory (Render disk mount point)
 MODELS_DIR="${MODELS_DIR:-/models}"
 MODEL_PATH="$MODELS_DIR/prompt-injection-v2"
 
-echo "📁 Models directory: $MODELS_DIR"
+echo ""
+echo "📁 Configuration:"
+echo "   MODELS_DIR=$MODELS_DIR"
+echo "   MODEL_PATH=$MODEL_PATH"
+echo ""
 
-# Check if model already exists
+# Check if models directory exists
+if [ ! -d "$MODELS_DIR" ]; then
+    echo "❌ ERROR: Models directory $MODELS_DIR does not exist!"
+    echo "   Checking if /models exists:"
+    ls -la /models 2>&1 || echo "   /models does not exist"
+    echo "   Creating directory..."
+    mkdir -p "$MODELS_DIR" || echo "   Failed to create directory"
+fi
+
+echo "📂 Checking for existing model..."
 if [ -f "$MODEL_PATH/onnx/model.onnx" ]; then
     echo "✅ Model already exists at $MODEL_PATH"
-    echo "   Skipping download to save time"
+    echo "   File size: $(du -h $MODEL_PATH/onnx/model.onnx | cut -f1)"
+    echo "   Skipping download"
 else
-    echo "📥 Model not found. Downloading..."
-    echo "   This will take 2-3 minutes on first deployment"
+    echo "⚠️  Model NOT found at $MODEL_PATH/onnx/model.onnx"
+    echo "   Checking what's in $MODELS_DIR:"
+    ls -la "$MODELS_DIR" 2>&1 || echo "   Cannot list $MODELS_DIR"
     
-    # Ensure we're in the right directory
-    cd /opt/render/project/src/llm_guard_api
+    echo ""
+    echo "📥 Starting model download..."
+    echo "   Running: python download_models.py --models-dir $MODELS_DIR"
     
-    # Run the download script
-    python download_models.py --models-dir "$MODELS_DIR"
+    # Run the download script with full output
+    python download_models.py --models-dir "$MODELS_DIR" 2>&1
+    DOWNLOAD_EXIT_CODE=$?
     
-    echo "✅ Model download complete!"
+    if [ $DOWNLOAD_EXIT_CODE -eq 0 ]; then
+        echo "✅ Download script completed successfully"
+    else
+        echo "❌ Download script failed with exit code: $DOWNLOAD_EXIT_CODE"
+    fi
+    
+    # Verify the model was actually downloaded
+    if [ -f "$MODEL_PATH/onnx/model.onnx" ]; then
+        echo "✅ Model verified at $MODEL_PATH/onnx/model.onnx"
+        echo "   File size: $(du -h $MODEL_PATH/onnx/model.onnx | cut -f1)"
+    else
+        echo "❌ ERROR: Model still not found after download!"
+        echo "   Contents of $MODELS_DIR:"
+        find "$MODELS_DIR" -type f -name "*.onnx" 2>&1 || echo "   No .onnx files found"
+    fi
 fi
 
 # Export the model path for the application
 export PROMPT_INJECTION_MODEL_PATH="$MODEL_PATH"
 
-echo "🔧 Pre-deploy complete. Environment configured:"
+echo ""
+echo "🔧 Environment variables:"
 echo "   PROMPT_INJECTION_MODEL_PATH=$PROMPT_INJECTION_MODEL_PATH"
-echo "✨ Ready to start the server!"
+echo "   AUTH_TOKEN=${AUTH_TOKEN:0:10}..." 
+echo ""
+echo "==================================================="
+echo "✨ PRE-DEPLOY SCRIPT COMPLETE"
+echo "==================================================="
