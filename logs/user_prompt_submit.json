@@ -1,0 +1,51 @@
+[
+  {
+    "session_id": "8ed22815-1812-4eaa-adf3-6ab1847ec58e",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/8ed22815-1812-4eaa-adf3-6ab1847ec58e.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "init"
+  },
+  {
+    "session_id": "8ed22815-1812-4eaa-adf3-6ab1847ec58e",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/8ed22815-1812-4eaa-adf3-6ab1847ec58e.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "/init "
+  },
+  {
+    "session_id": "aa57d486-0296-4425-8a3a-c7adc670209b",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/aa57d486-0296-4425-8a3a-c7adc670209b.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Okay, now in this project, let's deploy the LLM API. So it's in lm-api or something like that. Lm Guard API is a project that we want to deploy. Look at the Makefile; it should have `make install` and `make run` something. So I want to run it locally, and then you can run it locally by creating a bash command and running it in the background right here. And when you're done, I'll tell you the next steps. "
+  },
+  {
+    "session_id": "aa57d486-0296-4425-8a3a-c7adc670209b",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/aa57d486-0296-4425-8a3a-c7adc670209b.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "It's https://llm-guard-vkpo.onrender.com\ntest it"
+  },
+  {
+    "session_id": "aa57d486-0296-4425-8a3a-c7adc670209b",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/aa57d486-0296-4425-8a3a-c7adc670209b.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "I give you token it's \"fe0738e391d566cd8783f003310bd2ba\""
+  },
+  {
+    "session_id": "aa57d486-0296-4425-8a3a-c7adc670209b",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/aa57d486-0296-4425-8a3a-c7adc670209b.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "It looks like this:\n     [GET]200llm-guard-vkpo.onrender.com/readyzclientIP=\"109.51.145.128\" requestID=\"443d9878-681f-4ef9\" responseTimeMS=2 responseBytes=215 userAgent=\"curl/8.7.1\"\nINFO:     109.51.145.128:0 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     109.51.145.128:0 - \"GET /readyz HTTP/1.1\" 200 OK\n{\n    \"name\": \"POST /analyze/prompt http receive\",\n    \"context\": {\n        \"trace_id\": \"0xac5e5f1889f1dfda5a343e7253884eef\",\n        \"span_id\": \"0xe9cd8678ce36e0cb\",\n        \"trace_state\": \"[]\"\n    },\n    \"kind\": \"SpanKind.INTERNAL\",\n    \"parent_id\": \"0x35df7a683dbdbd67\",\n    \"start_time\": \"2025-08-11T20:03:24.467184Z\",\n    \"end_time\": \"2025-08-11T20:03:24.467367Z\",\n    \"status\": {\n        \"status_code\": \"UNSET\"\n    },\n    \"attributes\": {\n        \"asgi.event.type\": \"http.request\"\n    },\n    \"events\": [],\n    \"links\": [],\n    \"resource\": {\n        \"attributes\": {\n            \"service.name\": \"LLM Guard API\",\n            \"service.version\": \"0.0.10\"\n        },\n        \"schema_url\": \"\"\n    }\n}\n     [POST]502llm-guard-vkpo.onrender.com/analyze/promptclientIP=\"109.51.145.128\" requestID=\"058ad793-e78c-4a6c\" responseTimeMS=2437 responseBytes=223153 userAgent=\"curl/8.7.1\"\n     [POST]502llm-guard-vkpo.onrender.com/analyze/promptclientIP=\"109.51.145.128\" requestID=\"4e07e14f-bd22-42f8\" responseTimeMS=13 responseBytes=223153 userAgent=\"curl/8.7.1\"\n     [POST]502llm-guard-vkpo.onrender.com/analyze/promptclientIP=\"109.51.145.128\" requestID=\"0516f4b8-9c87-4909\" responseTimeMS=13 responseBytes=223153 userAgent=\"curl/8.7.1\"\n     [POST]502llm-guard-vkpo.onrender.com/analyze/promptclientIP=\"109.51.145.128\" requestID=\"46d872d9-6dbb-4509\" responseTimeMS=359 responseBytes=223153 userAgent=\"curl/8.7.1\"\n==> Running 'make run-uvicorn'\n2025-08-11 20:03:59 [debug    ] Loading config file            file_name=./config/scanners.yml\nWARNING:  ASGI app factory detected. Using it, but please consider setting the --factory flag explicitly.\nINFO:     Started server process [51]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)"
+  },
+  {
+    "session_id": "aa57d486-0296-4425-8a3a-c7adc670209b",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/aa57d486-0296-4425-8a3a-c7adc670209b.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Maybe we should be useing \nPre-Deploy CommandOptional\nRender runs this command before the start command. Useful for database migrations and static asset uploads."
+  }
+]

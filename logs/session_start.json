@@ -1,0 +1,16 @@
+[
+  {
+    "session_id": "8ed22815-1812-4eaa-adf3-6ab1847ec58e",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/8ed22815-1812-4eaa-adf3-6ab1847ec58e.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "SessionStart",
+    "source": "startup"
+  },
+  {
+    "session_id": "aa57d486-0296-4425-8a3a-c7adc670209b",
+    "transcript_path": "/Users/drtarazevich/.claude/projects/-Users-drtarazevich-Projects-getmany-repos-llm-guard/aa57d486-0296-4425-8a3a-c7adc670209b.jsonl",
+    "cwd": "/Users/drtarazevich/Projects/getmany_repos/llm-guard",
+    "hook_event_name": "SessionStart",
+    "source": "clear"
+  }
+]

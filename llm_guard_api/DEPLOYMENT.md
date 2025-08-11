@@ -71,7 +71,7 @@ output_scanners: []
 #### `llm_guard_api/startup.sh`
 (Already created - see file in repository)
 
-### 3. Render Build & Start Commands
+### 3. Render Build, Pre-Deploy & Start Commands
 
 In your Render service settings:
 
@@ -80,9 +80,14 @@ In your Render service settings:
 cd llm_guard_api && pip install -r requirements.txt huggingface_hub
 ```
 
+**Pre-Deploy Command:**
+```bash
+cd llm_guard_api && chmod +x pre_deploy.sh && ./pre_deploy.sh
+```
+
 **Start Command:**
 ```bash
-cd llm_guard_api && chmod +x startup.sh && ./startup.sh
+make run-uvicorn
 ```
 
 ## Deployment Steps
