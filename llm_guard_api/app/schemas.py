@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -6,6 +6,13 @@ from pydantic import BaseModel, Field
 class ScanPromptRequest(BaseModel):
     prompt: str = Field(title="Prompt")
     scanners_suppress: List[str] = Field(title="Scanners to suppress", default=[])
+    threshold: Optional[float] = Field(
+        title="Threshold for prompt injection detection",
+        default=None,
+        ge=0.0,
+        le=1.0,
+        description="Override the default threshold for prompt injection detection (0.0-1.0)"
+    )
 
 
 class ScanPromptResponse(BaseModel):

@@ -7,7 +7,12 @@ set -e  # Exit on error
 echo "🚀 Starting LLM Guard API..."
 
 # Set default models directory (Render disk mount point)
-MODELS_DIR="${MODELS_DIR:-/models}"
+# Use local models directory if /models is not writable
+if [ -w "/models" ]; then
+    MODELS_DIR="${MODELS_DIR:-/models}"
+else
+    MODELS_DIR="${MODELS_DIR:-./models}"
+fi
 MODEL_PATH="$MODELS_DIR/prompt-injection-v2"
 
 echo "📁 Models directory: $MODELS_DIR"

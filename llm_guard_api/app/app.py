@@ -354,6 +354,13 @@ def register_routes(
                 for scanner in input_scanners
                 if type(scanner).__name__ not in request.scanners_suppress
             ]
+        
+        # Apply custom threshold if provided
+        if request.threshold is not None:
+            for scanner in input_scanners:
+                if type(scanner).__name__ == "PromptInjection" and hasattr(scanner, "_threshold"):
+                    LOGGER.debug(f"Overriding PromptInjection threshold from {scanner._threshold} to {request.threshold}")
+                    scanner._threshold = request.threshold
 
         with concurrent.futures.ThreadPoolExecutor() as executor:
             loop = asyncio.get_event_loop()
@@ -416,6 +423,13 @@ def register_routes(
                 for scanner in input_scanners
                 if type(scanner).__name__ not in request.scanners_suppress
             ]
+        
+        # Apply custom threshold if provided
+        if request.threshold is not None:
+            for scanner in input_scanners:
+                if type(scanner).__name__ == "PromptInjection" and hasattr(scanner, "_threshold"):
+                    LOGGER.debug(f"Overriding PromptInjection threshold from {scanner._threshold} to {request.threshold}")
+                    scanner._threshold = request.threshold
 
         result_is_valid = True
         results_score = {}
